@@ -27,21 +27,27 @@ namespace CorridaDados.Entities
             {
                 case 5:
                     jogador.Posicao += (valor + 3);
+                    Console.WriteLine("Avançou mais 3 posições!");
                     break;
                 case 7:
                     jogador.Posicao += (valor - 2);
+                    Console.WriteLine("voltou 2 posições!");
                     break;
                 case 10:
                     jogador.Posicao += (valor + 3);
+                    Console.WriteLine("Avançou mais 3 posições!");
                     break;
                 case 13:
                     jogador.Posicao += (valor - 2);
+                    Console.WriteLine("voltou 2 posições!");
                     break;
                 case 15:
                     jogador.Posicao += (valor + 3);
+                    Console.WriteLine("Avançou mais 3 posições!");
                     break;
                 case 20:
                     jogador.Posicao += (valor - 2);
+                    Console.WriteLine("voltou 2 posições!");
                     break;
                 default:
                     jogador.Posicao += valor;
