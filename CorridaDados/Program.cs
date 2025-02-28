@@ -24,8 +24,47 @@ namespace CorridaDados
             Console.Clear();
             Console.WriteLine($"{jogador1.Nome} VS {jogador2.Nome.ToLower()}");
 
-            tabuleiro.ImprimirTabuleiro();
-            tabuleiro.ImprimirTabuleiro();
+            int turno = default;
+            int valor = default;
+
+            Console.WriteLine("\n");
+
+            while (jogador1.Ganhador == false || jogador2.Ganhador == false)
+            {
+                turno++;
+
+                if(turno % 2 == 0)
+                {
+                    valor = jogador1.RolaDado();
+                    Console.WriteLine($"\n{jogador1.Nome} tirou {valor}");
+                    tabuleiro.Avancar(valor, jogador1);
+                    Console.WriteLine(jogador1.Posicao);
+                    jogador1.Vitoria();
+                    Console.WriteLine("\nAperte para continuar");
+                    Console.ReadKey();
+                    Console.Clear();
+                }
+                else
+                {
+                    valor = jogador2.RolaDado();
+                    Console.WriteLine($"\n{jogador2.Nome} tirou {valor}");
+                    tabuleiro.Avancar(valor, jogador2);
+                    Console.WriteLine(jogador2.Posicao);
+                    jogador2.Vitoria();
+                }
+               
+                if(jogador1.Ganhador == true)
+                {
+                    Console.Clear();
+                    Console.WriteLine($"{jogador1.Nome} é o vencedor!!!!");
+                }
+                else if(jogador2.Ganhador == true)
+                {
+                    Console.Clear();
+                    Console.WriteLine($"{jogador2.Nome} é o vencedor!!!!");
+                }
+
+            }
         }
     }
 }
