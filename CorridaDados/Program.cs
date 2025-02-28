@@ -22,14 +22,14 @@ namespace CorridaDados
             Jogador jogador2 = new Jogador(System.Environment.MachineName);
 
             Console.Clear();
-            Console.WriteLine($"{jogador1.Nome} VS {jogador2.Nome.ToLower()}");
+            Console.WriteLine($"{jogador1.Nome} VS {jogador2.Nome}");
 
             int turno = default;
             int valor = default;
 
             Console.WriteLine("\n");
 
-            while (jogador1.Ganhador == false || jogador2.Ganhador == false)
+            while (jogador2.Ganhador == false || jogador1.Ganhador == false)
             {
                 turno++;
 
@@ -40,6 +40,7 @@ namespace CorridaDados
                     tabuleiro.Avancar(valor, jogador1);
                     Console.WriteLine(jogador1.Posicao);
                     jogador1.Vitoria();
+                    tabuleiro.ImprimirTabuleiro(jogador1.Posicao);
                     Console.WriteLine("\nAperte para continuar");
                     Console.ReadKey();
                     Console.Clear();
@@ -51,20 +52,24 @@ namespace CorridaDados
                     tabuleiro.Avancar(valor, jogador2);
                     Console.WriteLine(jogador2.Posicao);
                     jogador2.Vitoria();
+                    tabuleiro.ImprimirTabuleiro(jogador2.Posicao);
                 }
                
                 if(jogador1.Ganhador == true)
                 {
                     Console.Clear();
                     Console.WriteLine($"{jogador1.Nome} é o vencedor!!!!");
+                    goto Fim;
                 }
                 else if(jogador2.Ganhador == true)
                 {
                     Console.Clear();
                     Console.WriteLine($"{jogador2.Nome} é o vencedor!!!!");
+                    goto Fim;
                 }
-
             }
+        Fim:
+            Console.WriteLine("Aperte qualquer tecla para sair");
         }
     }
 }

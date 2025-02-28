@@ -8,13 +8,15 @@ namespace CorridaDados.Entities
 {
     class Tabuleiro
     {
-        public void ImprimirTabuleiro()
+        public void ImprimirTabuleiro(int posicao)
         {
             Console.Write("\n|");
             for (int i = 0; i < 30; i++)
             {
-                
-                Console.Write("-");
+                if (posicao != i)
+                    Console.Write("-");
+                else
+                    Console.Write("@");
             }
             Console.Write("|");
         }
