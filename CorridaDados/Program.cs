@@ -10,6 +10,8 @@ internal class Program
         while (true)
         {
             int posicaoJogador1 = 0;
+            int posicaoJogador2 = 0;
+
             bool jogoEmAndamento = true;
 
             while (jogoEmAndamento)
@@ -18,19 +20,18 @@ internal class Program
                 Console.WriteLine("------------------------------------");
                 Console.WriteLine("Jogo dos Dados");
                 Console.WriteLine("------------------------------------");
-
+                Console.WriteLine("Rodada do jogador");
+                Console.WriteLine("------------------------------------");
                 Console.Write("Pressione ENTER para lançar o dado...");
                 Console.ReadLine();
 
-                Random geradorDeNumeros = new Random();
-
-                int resultado = geradorDeNumeros.Next(1, 7);
+                int resultadoJogador = SortearDado();
 
                 Console.WriteLine("------------------------------------");
-                Console.WriteLine($"O dado caiu no número: {resultado}");
+                Console.WriteLine($"O dado caiu no número: {resultadoJogador}");
                 Console.WriteLine("------------------------------------");
 
-                posicaoJogador1 += resultado;
+                posicaoJogador1 += resultadoJogador;
 
                 Console.WriteLine($"Você está na posição: {posicaoJogador1} de {limiteLinhaChegada}!");
 
@@ -57,10 +58,53 @@ internal class Program
 
                 if (posicaoJogador1 >= limiteLinhaChegada)
                 {
-                    posicaoJogador1 = limiteLinhaChegada;
+                    Console.WriteLine("Parabéns! Você alcançou a linha de chegada!");
                     jogoEmAndamento = false;
+                    continue;
+                }
 
-                    Console.WriteLine("Parabéns! Você alcançou a linha de chegada!");            
+                Console.WriteLine("Rodada do computador");
+                Console.WriteLine("------------------------------------");
+                Console.Write("Pressione ENTER para visualizar a rodada do computador");
+
+                Console.ReadKey();
+
+                int resultadoComputador = SortearDado();
+
+                Console.WriteLine("\n------------------------------------");
+                Console.WriteLine($"O dado caiu no número: {resultadoJogador}");
+                Console.WriteLine("------------------------------------");
+
+                posicaoJogador2 += resultadoComputador;
+
+                Console.WriteLine($"O computador está na posição: {posicaoJogador2} de {limiteLinhaChegada}!");
+
+                if (posicaoJogador2 == 5 || posicaoJogador2 == 10 || posicaoJogador2 == 15 || posicaoJogador2 == 25)
+                {
+                    Console.WriteLine("------------------------------------");
+                    Console.WriteLine("EVENTO ESPECIAL: Avanço extra de 3 casas!");
+
+                    posicaoJogador2 += 3;
+
+                    Console.WriteLine($"O computador avançou para a posição: {posicaoJogador2}");
+                    Console.WriteLine("------------------------------------");
+                }
+                else if (posicaoJogador2 == 7 || posicaoJogador2 == 13 || posicaoJogador2 == 20)
+                {
+                    Console.WriteLine("------------------------------------");
+                    Console.WriteLine("EVENTO ESPECIAL: Recuo de 2 casas!");
+
+                    posicaoJogador2 -= 2;
+
+                    Console.WriteLine($"O computador recuou para a posição: {posicaoJogador2}");
+                    Console.WriteLine("------------------------------------");
+                }
+
+                if (posicaoJogador2 >= limiteLinhaChegada)
+                {
+                    Console.WriteLine("Que pena! O computador alcançou a linha de chegada, tente novamente!");
+                    jogoEmAndamento = false;
+                    continue;
                 }
 
                 Console.ReadKey();
@@ -72,5 +116,13 @@ internal class Program
             if (opcaoContinuar != "S")
                 break;
         }
+    }
+
+    static int SortearDado()
+    {
+        Random geradorDeNumeros = new Random();
+
+        int resultado = geradorDeNumeros.Next(1, 7);
+        return resultado;
     }
 }
