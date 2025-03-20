@@ -32,6 +32,29 @@ internal class Program
 
                 posicaoJogador1 += resultado;
 
+                Console.WriteLine($"Você está na posição: {posicaoJogador1} de {limiteLinhaChegada}!");
+
+                if(posicaoJogador1 == 5 || posicaoJogador1 == 10 || posicaoJogador1 == 15 || posicaoJogador1 == 25)
+                {
+                    Console.WriteLine("------------------------------------");
+                    Console.WriteLine("EVENTO ESPECIAL: Avanço extra de 3 casas!");
+
+                    posicaoJogador1 += 3;
+
+                    Console.WriteLine($"Você avançou para a posição: {posicaoJogador1}");
+                    Console.WriteLine("------------------------------------");
+                }
+                else if (posicaoJogador1 == 7 || posicaoJogador1 == 13 || posicaoJogador1 == 20)
+                {
+                    Console.WriteLine("------------------------------------");
+                    Console.WriteLine("EVENTO ESPECIAL: Recuo de 2 casas!");
+
+                    posicaoJogador1 -= 2;
+
+                    Console.WriteLine($"Você recuou para a posição: {posicaoJogador1}");
+                    Console.WriteLine("------------------------------------");
+                }
+
                 if (posicaoJogador1 >= limiteLinhaChegada)
                 {
                     posicaoJogador1 = limiteLinhaChegada;
@@ -39,10 +62,7 @@ internal class Program
 
                     Console.WriteLine("Parabéns! Você alcançou a linha de chegada!");            
                 }
-                else
-                {
-                    Console.WriteLine($"Você está na posição: {posicaoJogador1} de {limiteLinhaChegada}!");
-                }
+
                 Console.ReadKey();
             }
 
